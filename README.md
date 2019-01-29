@@ -1,4 +1,4 @@
-#EcommPay Python SDK
+# EcommPay Python SDK
 
 This is a set of libraries in the Python language to ease integration of your service
 with the EcommPay Payment Page.
@@ -13,7 +13,7 @@ Please note that for correct SDK operating you must have at least Python 3.5.
 
 Install with pip
 ```bash
-pip install payment_page_sdk
+pip install ecommpay-python-sdk
 ```
 
 ### Get URL for payment
@@ -46,9 +46,9 @@ callback = gate.handle_callback(data)
 
 `callback` is the Callback object describing properties received from payment system;
 `callback` implements these methods: 
-1. `callback::get_payment_status();`
+1. `callback.get_payment_status();`
     Get payment status.
-2. `callback::get_payment();`
+2. `callback.get_payment();`
     Get all payment data.
-3. `callback::get_payment_id();`
+3. `callback.get_payment_id();`
     Get payment ID in your system.

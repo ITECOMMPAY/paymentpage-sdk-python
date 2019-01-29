@@ -1,11 +1,16 @@
+import pathlib
 from setuptools import setup, find_packages
-from os.path import join, dirname
+
+HERE = pathlib.Path(__file__).parent
+README = (HERE / "README.md").read_text()
 
 setup(
-    name='EcommPay Python SDK',
-    version='1.0',
+    name='ecommpay-python-sdk',
+    version='1.0.0',
     url='https://github.com/ITECOMMPAY/paymentpage-sdk-python',
     license='MIT',
+    long_description=README,
+    long_description_content_type="text/markdown",
     packages=find_packages(exclude=['tests', 'tests.*']),
     classifiers=[
         'Development Status :: 3 - Alpha',
@@ -17,5 +22,4 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    long_description=open(join(dirname(__file__), 'README.rm')).read(),
 )
