@@ -1,5 +1,4 @@
 
-from email.utils import formatdate
 from collections.abc import Iterable
 
 

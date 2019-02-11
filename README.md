@@ -1,4 +1,4 @@
-# EcommPay Python SDK
+# EcommPay payment page SDK
 
 This is a set of libraries in the Python language to ease integration of your service
 with the EcommPay Payment Page.
@@ -7,13 +7,13 @@ Please note that for correct SDK operating you must have at least Python 3.5.
 
 ## Payment flow
 
-![Payment flow](flow.png)
+![Payment flow](https://raw.githubusercontent.com/ITECOMMPAY/paymentpage-sdk-python/master/flow.png)
 
 ## Installation
 
 Install with pip
 ```bash
-pip install ecommpay-python-sdk
+pip install ecommpay-sdk
 ```
 
 ### Get URL for payment
@@ -24,8 +24,8 @@ from payment_page_sdk.Payment import Payment
 
 gate = Gate('secret')
 payment = Payment(402)
-payment.set_payment_amount = 1001
-payment.set_payment_currency = 'USD'
+payment.payment_amount = 1001
+payment.payment_currency = 'USD'
 payment_url = gate.get_purchase_payment_page_url(payment)
 ``` 
 

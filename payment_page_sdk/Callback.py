@@ -49,7 +49,7 @@ class Callback(object):
         Callback constructor
 
         :param dict data:
-        :param SignatureHandler signatureHandler:
+        :param SignatureHandler signature_handler:
         """
         self.__data = self.decode_response(data)
         self.__signatureHandler = signature_handler
@@ -57,7 +57,7 @@ class Callback(object):
             raise ProcessException('Signature ' + self.get_signature() + ' is invalid')
 
     def get_payment(self):
-        """:param
+        """
         Get payment info
 
         :return: mixed
@@ -149,6 +149,6 @@ class Callback(object):
         if name in data:
             del data[name]
 
-        for key in data :
+        for key in data:
             if isinstance(data[key], dict):
                 self.__remove_param(name, data[key])

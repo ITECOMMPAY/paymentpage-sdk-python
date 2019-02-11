@@ -5,7 +5,7 @@ HERE = pathlib.Path(__file__).parent
 README = (HERE / "README.md").read_text()
 
 setup(
-    name='ecommpay-python-sdk',
+    name='ecommpay-sdk',
     version='1.0.0',
     url='https://github.com/ITECOMMPAY/paymentpage-sdk-python',
     license='MIT',
