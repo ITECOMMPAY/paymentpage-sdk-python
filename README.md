@@ -1,5 +1,8 @@
 # EcommPay payment page SDK
 
+<a href="https://codeclimate.com/github/ITECOMMPAY/paymentpage-sdk-python/maintainability"><img src="https://api.codeclimate.com/v1/badges/d02745619d7dfdd5630f/maintainability" /></a>
+<a href="https://codeclimate.com/github/ITECOMMPAY/paymentpage-sdk-python/test_coverage"><img src="https://api.codeclimate.com/v1/badges/d02745619d7dfdd5630f/test_coverage" /></a>
+
 This is a set of libraries in the Python language to ease integration of your service
 with the EcommPay Payment Page.
 
@@ -46,9 +49,9 @@ callback = gate.handle_callback(data)
 
 `callback` is the Callback object describing properties received from payment system;
 `callback` implements these methods: 
-1. `callback.get_payment_status();`
+1. `callback.get_payment_status()`
     Get payment status.
-2. `callback.get_payment();`
+2. `callback.get_payment()`
     Get all payment data.
-3. `callback.get_payment_id();`
+3. `callback.get_payment_id()`
     Get payment ID in your system.
