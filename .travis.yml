@@ -3,8 +3,9 @@ python:
   - "3.5"
 
 before_script:
-  - pip install codeclimate-test-reporter
   - pip install nose
+  - pip install coverage==4.3
+  - pip install codeclimate-test-reporter
 
 script:
   - nosetests --with-coverage --cover-erase --cover-package=payment_page_sdk
