@@ -1,7 +1,8 @@
-# EcommPay payment page SDK
+[![Build Status](https://travis-ci.org/ITECOMMPAY/paymentpage-sdk-python.svg?branch=master)](https://travis-ci.org/ITECOMMPAY/paymentpage-sdk-python)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d02745619d7dfdd5630f/test_coverage)](https://codeclimate.com/github/ITECOMMPAY/paymentpage-sdk-python/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d02745619d7dfdd5630f/maintainability)](https://codeclimate.com/github/ITECOMMPAY/paymentpage-sdk-python/maintainability)
 
-<a href="https://codeclimate.com/github/ITECOMMPAY/paymentpage-sdk-python/maintainability"><img src="https://api.codeclimate.com/v1/badges/d02745619d7dfdd5630f/maintainability" /></a>
-<a href="https://codeclimate.com/github/ITECOMMPAY/paymentpage-sdk-python/test_coverage"><img src="https://api.codeclimate.com/v1/badges/d02745619d7dfdd5630f/test_coverage" /></a>
+# EcommPay payment page SDK
 
 This is a set of libraries in the Python language to ease integration of your service
 with the EcommPay Payment Page.
