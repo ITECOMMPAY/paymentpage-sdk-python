@@ -1,6 +1,6 @@
 
-from payment_page_sdk.SignatureHandler import SignatureHandler
-from payment_page_sdk.ProcessException import ProcessException
+from payment_page_sdk.signature_handler import SignatureHandler
+from payment_page_sdk.process_exception import ProcessException
 import json
 import copy
 

@@ -22,11 +22,11 @@ pip install ecommpay-sdk
 ### Get URL for payment
 
 ```python
-from payment_page_sdk.Gate import Gate
-from payment_page_sdk.Payment import Payment
+from payment_page_sdk.gate import Gate
+from payment_page_sdk.payment import Payment
 
 gate = Gate('secret')
-payment = Payment(402)
+payment = Payment(402, "some payment id")
 payment.payment_amount = 1001
 payment.payment_currency = 'USD'
 payment_url = gate.get_purchase_payment_page_url(payment)
@@ -39,7 +39,7 @@ payment_url = gate.get_purchase_payment_page_url(payment)
 You'll need to autoload this code in order to handle notifications:
 
 ```python
-from payment_page_sdk.Gate import Gate
+from payment_page_sdk.gate import Gate
 
 gate = Gate('secret')
 callback = gate.handle_callback(data)

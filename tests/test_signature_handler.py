@@ -1,5 +1,5 @@
 
-from payment_page_sdk.SignatureHandler import SignatureHandler
+from payment_page_sdk.signature_handler import SignatureHandler
 import copy
 import unittest
 
@@ -14,7 +14,8 @@ class SignatureHandlerTest(unittest.TestCase):
                         "id": "test-payment",
                         "status": "success"
                     },
-                "signature": "UGzKT0NC26f4u0niyJSQPx5q3kFFIndwLXeJVXahfCFwbY+Svg1WoXIxzrIyyjWUSLFhT8wAQ5SfBDRHnwm6Yg=="
+                "some_bool_param": True,
+                "signature": "TZS0J65ReNUMgKzeXUey9xOGGyC7r4OhsFXt/3H8XZM2Le8Wot2E1NIjeSPOyV1F3sUU6F3kfo9om2dhbe3ieA=="
             }
         }
 

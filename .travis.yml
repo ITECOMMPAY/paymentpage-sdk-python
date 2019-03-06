@@ -1,0 +1,13 @@
+language: python
+python:
+  - "3.5"
+
+before_script:
+  - pip install codeclimate-test-reporter
+  - pip install nose
+
+script:
+  - nosetests --with-coverage --cover-erase --cover-package=payment_page_sdk
+
+after_script:
+  - codeclimate-test-reporter --token 9f2deeb3a85b75879ee4704041525bca9a7324f18205ab2bd97dd90f5f161b84 --file .coverage

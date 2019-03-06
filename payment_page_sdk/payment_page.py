@@ -1,7 +1,7 @@
 
 import urllib.parse
-from payment_page_sdk.SignatureHandler import SignatureHandler
-from payment_page_sdk.Payment import Payment
+from payment_page_sdk.signature_handler import SignatureHandler
+from payment_page_sdk.payment import Payment
 
 
 class PaymentPage(object):

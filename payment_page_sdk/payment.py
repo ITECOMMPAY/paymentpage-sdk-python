@@ -8,13 +8,7 @@ class Payment(object):
     Attributes:
         str account_token: The token of the bank card that will be used to perform a payment
         str card_operation_type: Type of payment performed via payment card
-        str cashier_default_mode: The tab that is opened to customer when the payment page is opened
-        str cashier_force_mode: The only tab that is opened in the payment page
         datetime best_before: Date and time when the payment period expires.
-        list cashier_predefined_amounts: A range of predefined amounts that are available for selection by the customer.
-        bool cashier_manual_input: Turning on or turning off the customer's ability to manually input amount of the payment or payout.
-        int cashier_max_value: Maximum payment amount in minor unit of currency.
-        int cashier_min_value: Minimum payment amount in minor unit of currency.
         bool close_on_missclick: A parameter that specifies the action of the widget (opened in the modal window) when a customer clicks outside the widget area.
         str css_modal_wrap: An additional CSS class for a modal window.
         str customer_id: Unique ID of the customer in your project
@@ -66,13 +60,14 @@ class Payment(object):
     PAYOUT_TYPE = 'payout'
     RECURRING_TYPE = 'recurring'
 
-    def __init__(self, project_id: str):
+    def __init__(self, project_id: str, payment_id: str):
         """
         Payment constructor
 
         :param project_id: str
         """
         self.__dict__['project_id'] = project_id
+        self.__dict__['payment_id'] = payment_id
 
     def get_params(self) -> dict:
         """
@@ -85,7 +80,5 @@ class Payment(object):
     def __setattr__(self, name, value):
         if name == 'best_before':
             value = value.isoformat()
-        if name == 'cashier_predefined_amounts' and isinstance(value, Iterable):
-            value = ','.join(map(str, value))
 
         self.__dict__[name] = value

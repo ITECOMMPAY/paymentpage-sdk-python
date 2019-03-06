@@ -1,5 +1,5 @@
 
-from payment_page_sdk.Payment import Payment
+from payment_page_sdk.payment import Payment
 from datetime import datetime
 import unittest
 
@@ -9,13 +9,10 @@ class PaymentTest(unittest.TestCase):
         {
             'project_id': '1',
             'best_before': '2055-05-05T00:00:00',
-            'cashier_predefined_amounts': '1,2,3',
             'payment_id': 'test-payment'
         }
 
     def test_get_params(self):
-        payment = Payment('1')
-        payment.payment_id = 'test-payment'
+        payment = Payment('1', 'test-payment')
         payment.best_before = datetime(2055, 5, 5)
-        payment.cashier_predefined_amounts = [1, 2, 3]
         self.assertEqual(self.compare_data, payment.get_params())

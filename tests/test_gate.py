@@ -1,9 +1,9 @@
 
-from payment_page_sdk.Gate import Gate
-from payment_page_sdk.Payment import Payment
+from payment_page_sdk.gate import Gate
+from payment_page_sdk.payment import Payment
 from datetime import datetime
 from urllib import parse as urlparse
-from payment_page_sdk.Callback import Callback
+from payment_page_sdk.callback import Callback
 import json
 import unittest
 
@@ -11,9 +11,9 @@ import unittest
 class GateTest(unittest.TestCase):
     secret = 'qwerty'
     compare_url = \
-        'https://paymentpage.ecommpay.com/payment?payment_id=test-payment&cashier_predefined_amounts=1%2C2%2C3' \
-        + '&project_id=1&best_before=2055-05-05T00%3A00%3A00&signature=vCSGGFyvxOyBXCh07CkmwhXgbNN9IDH5ygf40TI' \
-        + 'DQ8o4me37e2mXNnt%2FjJVJop16rLJj3JK2U%2Flkwud6C1rqVw%3D%3D'
+        'https://paymentpage.ecommpay.com/payment?payment_id=test-payment' \
+        + '&project_id=1&best_before=2055-05-05T00%3A00%3A00&signature=uiyaj9pCNt45hXe%2FyoyvXsdAqRvXLwg8a%2BUKrpvx' \
+        + 'G%2FGl18dh5NN1sdmbDoMG7%2BB8oZU9cycmOWoyo78etOjd0Q%3D%3D'
     callback_data =\
         {
             "body": {
@@ -31,10 +31,8 @@ class GateTest(unittest.TestCase):
         cls.gate = Gate(cls.secret)
 
     def test_get_purchase_payment_page_url(self):
-        payment = Payment('1')
-        payment.payment_id = 'test-payment'
+        payment = Payment('1', 'test-payment')
         payment.best_before = datetime(2055, 5, 5)
-        payment.cashier_predefined_amounts = [1, 2, 3]
         purchase_payment_page_url = self.gate.get_purchase_payment_page_url(payment)
         url_parsed_params = urlparse.parse_qs(urlparse.urlparse(self.compare_url).query)
         gen_url_parsed_params = urlparse.parse_qs(urlparse.urlparse(purchase_payment_page_url).query)

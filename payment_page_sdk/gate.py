@@ -1,8 +1,8 @@
 
-from payment_page_sdk.SignatureHandler import SignatureHandler
-from payment_page_sdk.PaymentPage import PaymentPage
-from payment_page_sdk.Callback import Callback
-from payment_page_sdk.Payment import Payment
+from payment_page_sdk.signature_handler import SignatureHandler
+from payment_page_sdk.payment_page import PaymentPage
+from payment_page_sdk.callback import Callback
+from payment_page_sdk.payment import Payment
 
 
 class Gate(object):
