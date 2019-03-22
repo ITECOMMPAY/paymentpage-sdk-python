@@ -17,6 +17,17 @@ class CallbackTest(unittest.TestCase):
                 },
             "signature": "UGzKT0NC26f4u0niyJSQPx5q3kFFIndwLXeJVXahfCFwbY+Svg1WoXIxzrIyyjWUSLFhT8wAQ5SfBDRHnwm6Yg=="
         }
+    payment_data_recursive =\
+        {
+            "body": {
+                "payment":
+                    {
+                        "id": "test-payment",
+                        "status": "success"
+                    },
+                "signature": "UGzKT0NC26f4u0niyJSQPx5q3kFFIndwLXeJVXahfCFwbY+Svg1WoXIxzrIyyjWUSLFhT8wAQ5SfBDRHnwm6Yg=="
+            }
+        }
     payment_data_invalid_signature =\
         {
             "payment":
@@ -55,6 +66,10 @@ class CallbackTest(unittest.TestCase):
     def test_decode_response(self):
         with self.assertRaises(ProcessException):
             self.callback.decode_response(json.dumps(self.payment_data)+'1')
+
+    def test_recursive_get(self):
+        with self.assertRaises(ProcessException):
+            Callback(json.dumps(self.payment_data_recursive), SignatureHandler(self.secret))
 
     def test_invalid_signature(self):
         with self.assertRaises(ProcessException):
