@@ -114,7 +114,7 @@ class Callback(object):
         signature = self.get_signature()
         self.__remove_param('signature', data)
 
-        return self.__signatureHandler.check(data['body'], signature)
+        return self.__signatureHandler.check(data, signature)
 
     def __get_value_by_name(self, name: str, data: dict = {}):
         """

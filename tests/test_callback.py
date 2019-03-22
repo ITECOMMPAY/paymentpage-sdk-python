@@ -10,34 +10,28 @@ class CallbackTest(unittest.TestCase):
     secret = 'qwerty'
     payment_data =\
         {
-            "body": {
-                "payment":
-                    {
-                        "id": "test-payment",
-                        "status": "success"
-                    },
-                "signature": "UGzKT0NC26f4u0niyJSQPx5q3kFFIndwLXeJVXahfCFwbY+Svg1WoXIxzrIyyjWUSLFhT8wAQ5SfBDRHnwm6Yg=="
-            }
+            "payment":
+                {
+                    "id": "test-payment",
+                    "status": "success"
+                },
+            "signature": "UGzKT0NC26f4u0niyJSQPx5q3kFFIndwLXeJVXahfCFwbY+Svg1WoXIxzrIyyjWUSLFhT8wAQ5SfBDRHnwm6Yg=="
         }
     payment_data_invalid_signature =\
         {
-            "body": {
-                "payment":
-                    {
-                        "id": "test-payment"
-                    },
-                "signature": "UGzKT0NC26f4u0niyJSQPx5q3kFFIndwLXeJVXahfCFwbYg34h32gh3"
-            }
+            "payment":
+                {
+                    "id": "test-payment"
+                },
+            "signature": "UGzKT0NC26f4u0niyJSQPx5q3kFFIndwLXeJVXahfCFwbYg34h32gh3"
         }
     payment_data_without_status =\
         {
-            "body": {
-                "payment":
-                    {
-                        "id": "test-payment"
-                    },
-                "signature": "yVp+lFVggXb0iitKgb49yfl/riUGRXMaTVCqiJTEbfkIt2PCpIR3vwyBg+SgtsoG4HTDdg9X7rxi0A1R/U2O5w=="
-            }
+            "payment":
+                {
+                    "id": "test-payment"
+                },
+            "signature": "yVp+lFVggXb0iitKgb49yfl/riUGRXMaTVCqiJTEbfkIt2PCpIR3vwyBg+SgtsoG4HTDdg9X7rxi0A1R/U2O5w=="
         }
 
     @classmethod
@@ -47,16 +41,16 @@ class CallbackTest(unittest.TestCase):
         cls.callback = Callback(payment_data_raw, signature_handler)
 
     def test_get_payment(self):
-        self.assertEqual(self.callback.get_payment(), self.payment_data['body']['payment'])
+        self.assertEqual(self.callback.get_payment(), self.payment_data['payment'])
 
     def test_get_payment_status(self):
-        self.assertEqual(self.callback.get_payment_status(), self.payment_data['body']['payment']['status'])
+        self.assertEqual(self.callback.get_payment_status(), self.payment_data['payment']['status'])
 
     def test_get_payment_id(self):
-        self.assertEqual(self.callback.get_payment_id(), self.payment_data['body']['payment']['id'])
+        self.assertEqual(self.callback.get_payment_id(), self.payment_data['payment']['id'])
 
     def test_get_signature(self):
-        self.assertEqual(self.callback.get_signature(), self.payment_data['body']['signature'])
+        self.assertEqual(self.callback.get_signature(), self.payment_data['signature'])
 
     def test_decode_response(self):
         with self.assertRaises(ProcessException):

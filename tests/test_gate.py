@@ -16,14 +16,12 @@ class GateTest(unittest.TestCase):
         + 'G%2FGl18dh5NN1sdmbDoMG7%2BB8oZU9cycmOWoyo78etOjd0Q%3D%3D'
     callback_data =\
         {
-            "body": {
-                "payment":
-                    {
-                        "id": "test-payment",
-                        "status": "success"
-                    },
-                "signature": "UGzKT0NC26f4u0niyJSQPx5q3kFFIndwLXeJVXahfCFwbY+Svg1WoXIxzrIyyjWUSLFhT8wAQ5SfBDRHnwm6Yg=="
-            }
+            "payment":
+                {
+                    "id": "test-payment",
+                    "status": "success"
+                },
+            "signature": "UGzKT0NC26f4u0niyJSQPx5q3kFFIndwLXeJVXahfCFwbY+Svg1WoXIxzrIyyjWUSLFhT8wAQ5SfBDRHnwm6Yg=="
         }
 
     @classmethod
