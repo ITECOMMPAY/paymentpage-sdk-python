@@ -27,7 +27,7 @@ from payment_page_sdk.gate import Gate
 from payment_page_sdk.payment import Payment
 
 gate = Gate('secret')
-payment = Payment(402, "some payment id")
+payment = Payment('402', 'some payment id')
 payment.payment_amount = 1001
 payment.payment_currency = 'USD'
 payment_url = gate.get_purchase_payment_page_url(payment)
