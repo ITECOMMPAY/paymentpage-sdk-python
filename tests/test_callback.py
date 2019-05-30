@@ -36,6 +36,24 @@ class CallbackTest(unittest.TestCase):
                 },
             "signature": "UGzKT0NC26f4u0niyJSQPx5q3kFFIndwLXeJVXahfCFwbYg34h32gh3"
         }
+    payment_data_multilevel =\
+        {
+            "payment":
+                {
+                    "id": "test-payment"
+                },
+            "errors": [
+                {
+                    "code": "123",
+                    "message": "grand crash"
+                },
+                {
+                    "code": "456",
+                    "message": "minor crash"
+                },
+            ],
+            "signature": "UGzKT0NC26f4u0niyJSQPx5q3kFFIndwLXeJVXahfCFwbYg34h32gh3"
+        }
     payment_data_without_status =\
         {
             "payment":
@@ -82,3 +100,29 @@ class CallbackTest(unittest.TestCase):
         payment_data_raw = json.dumps(self.payment_data_without_status)
         callback = Callback(payment_data_raw, signature_handler)
         self.assertEqual(callback.get_payment_status(), None)
+
+    def test_multilevel_callback(self):
+        signature_handler = SignatureHandler(self.secret)
+        payment_data_raw = '{' +\
+            '"payment": {' +\
+                '"id": "test-payment"' +\
+            '},' +\
+            '"errors": [' +\
+                '{' +\
+                    '"code": "123",' +\
+                    '"message": "grand crash",' +\
+                    '"description": [' +\
+                        '"description-str",' +\
+                        '{' +\
+                            '"description1": 1' +\
+                        '}' +\
+                    ']' +\
+                '},' +\
+                '{' +\
+                    '"code": "456",' +\
+                    '"message": "minor crash"' +\
+                '}' +\
+            '],' +\
+            '"signature": "i6F9q/cfj8T+r/9z1U1f+WgGe0Y/2L2Ml7pp6x6GKLmS0SwbEzcD1/DJ2Hx4PwSgyD696SU19MjtHBF0gv+LKA=="' +\
+        '}'
+        Callback(payment_data_raw, signature_handler)
