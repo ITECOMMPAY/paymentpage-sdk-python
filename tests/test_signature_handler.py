@@ -2,6 +2,7 @@
 from payment_page_sdk.signature_handler import SignatureHandler
 from payment_page_sdk.callback import Callback
 import copy
+import json
 import unittest
 
 
@@ -18,6 +19,31 @@ class SignatureHandlerTest(unittest.TestCase):
                 "some_bool_param": True,
                 "signature": "TZS0J65ReNUMgKzeXUey9xOGGyC7r4OhsFXt/3H8XZM2Le8Wot2E1NIjeSPOyV1F3sUU6F3kfo9om2dhbe3ieA=="
             }
+        }
+    payment_multilevel_data =\
+        {
+            "payment":
+                {
+                    "id": "test-payment"
+                },
+            "errors":
+                [
+                    {
+                        "code": "123",
+                        "message": "grand crash",
+                        "description": [
+                            "description-str",
+                            {
+                                "description1": 1
+                            }
+                        ]
+                    },
+                    {
+                        "code": "456",
+                        "message": "minor crash"
+                    }
+                ],
+            "signature": "i6F9q/cfj8T+r/9z1U1f+WgGe0Y/2L2Ml7pp6x6GKLmS0SwbEzcD1/DJ2Hx4PwSgyD696SU19MjtHBF0gv+LKA=="
         }
 
     @classmethod
@@ -40,26 +66,5 @@ class SignatureHandlerTest(unittest.TestCase):
 
     def test_multilevel_callback(self):
         signature_handler = SignatureHandler(self.secret)
-        payment_data_raw = '{' +\
-            '"payment": {' +\
-                '"id": "test-payment"' +\
-            '},' +\
-            '"errors": [' +\
-                '{' +\
-                    '"code": "123",' +\
-                    '"message": "grand crash",' +\
-                    '"description": [' +\
-                        '"description-str",' +\
-                        '{' +\
-                            '"description1": 1' +\
-                        '}' +\
-                    ']' +\
-                '},' +\
-                '{' +\
-                    '"code": "456",' +\
-                    '"message": "minor crash"' +\
-                '}' +\
-            '],' +\
-            '"signature": "i6F9q/cfj8T+r/9z1U1f+WgGe0Y/2L2Ml7pp6x6GKLmS0SwbEzcD1/DJ2Hx4PwSgyD696SU19MjtHBF0gv+LKA=="' +\
-        '}'
+        payment_data_raw = json.dumps(self.payment_multilevel_data)
         Callback(payment_data_raw, signature_handler)
