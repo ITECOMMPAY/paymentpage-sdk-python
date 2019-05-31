@@ -36,24 +36,6 @@ class CallbackTest(unittest.TestCase):
                 },
             "signature": "UGzKT0NC26f4u0niyJSQPx5q3kFFIndwLXeJVXahfCFwbYg34h32gh3"
         }
-    payment_data_multilevel =\
-        {
-            "payment":
-                {
-                    "id": "test-payment"
-                },
-            "errors": [
-                {
-                    "code": "123",
-                    "message": "grand crash"
-                },
-                {
-                    "code": "456",
-                    "message": "minor crash"
-                },
-            ],
-            "signature": "UGzKT0NC26f4u0niyJSQPx5q3kFFIndwLXeJVXahfCFwbYg34h32gh3"
-        }
     payment_data_without_status =\
         {
             "payment":
