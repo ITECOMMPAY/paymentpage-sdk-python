@@ -45,6 +45,7 @@ class SignatureHandler(object):
         params_to_sign = self.__get_params_to_sign(params)
         params_to_sign_list = list(OrderedDict(sorted(params_to_sign.items(), key=lambda t: t[0])).values())
         string_to_sign = self.ITEMS_DELIMITER.join(params_to_sign_list).encode('utf-8')
+
         return base64.b64encode(hmac.new(secret_key, string_to_sign, hmac._hashlib.sha512).digest()).decode()
 
     def __get_params_to_sign(self, params: dict, prefix='', sort=True) -> dict:
@@ -61,6 +62,10 @@ class SignatureHandler(object):
         for key in params:
             param_key = prefix + (':' if prefix else '') + key
             value = params[key]
+
+            if isinstance(value, list):
+                value = {str(key): value for key, value in enumerate(value)}
+
             if isinstance(value, dict):
                 sub_array = self.__get_params_to_sign(value, param_key, False)
                 params_to_sign.update(sub_array)
