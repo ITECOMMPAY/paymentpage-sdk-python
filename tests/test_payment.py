@@ -9,6 +9,7 @@ class PaymentTest(unittest.TestCase):
         {
             'project_id': '1',
             'best_before': '2055-05-05T00:00:00',
+            'interface_type': '{"id": 24}',
             'payment_id': 'test-payment'
         }
 

@@ -11,9 +11,10 @@ import unittest
 class GateTest(unittest.TestCase):
     secret = 'qwerty'
     compare_url = \
-        'https://paymentpage.ecommpay.com/payment?payment_id=test-payment' \
-        + '&project_id=1&best_before=2055-05-05T00%3A00%3A00&signature=uiyaj9pCNt45hXe%2FyoyvXsdAqRvXLwg8a%2BUKrpvx' \
-        + 'G%2FGl18dh5NN1sdmbDoMG7%2BB8oZU9cycmOWoyo78etOjd0Q%3D%3D'
+        'https://paymentpage.ecommpay.com/payment?payment_id=test-payment&interface_type=%7B%22id%22%3A%2024%7D' \
+        + '&project_id=1&best_before=2055-05-05T00%3A00%3A00&signature=q6' \
+        + '9mSGul5x6KACTn0Vl%2BX6N4hH1lL45yQiEbmLzJvNoJ1hwkBuiEv%2FLLpJuy' \
+        + 'LWtIrgU7%2Bq0TAUO0f%2Bai0bqjKQ%3D%3D'
     callback_data =\
         {
             "payment":
