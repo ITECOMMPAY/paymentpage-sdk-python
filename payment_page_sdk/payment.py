@@ -1,5 +1,6 @@
 
 from collections.abc import Iterable
+import json
 
 
 class Payment(object):
@@ -60,6 +61,8 @@ class Payment(object):
     PAYOUT_TYPE = 'payout'
     RECURRING_TYPE = 'recurring'
 
+    INTERFACE_TYPE = 24
+
     def __init__(self, project_id: str, payment_id: str):
         """
         Payment constructor
@@ -68,6 +71,7 @@ class Payment(object):
         """
         self.__dict__['project_id'] = project_id
         self.__dict__['payment_id'] = payment_id
+        self.__dict__['interface_type'] = json.dumps({'id': self.INTERFACE_TYPE})
 
     def get_params(self) -> dict:
         """

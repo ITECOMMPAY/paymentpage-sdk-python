@@ -9,8 +9,8 @@ import unittest
 
 class PaymentPageTest(unittest.TestCase):
     compare_url = \
-        'http://test.test/pay?best_before=2055-05-05T00%3A00%3A00&project_id=1&payment_id=test-payment&signature=' \
-        + 'uiyaj9pCNt45hXe%2FyoyvXsdAqRvXLwg8a%2BUKrpvxG%2FGl18dh5NN1sdmbDoMG7%2BB8oZU9cycmOWoyo78etOjd0Q%3D%3D'
+        'http://test.test/pay?best_before=2055-05-05T00%3A00%3A00&interface_type=%7B%22id%22%3A%2024%7D&project_id=1&payment_id=test-payment&signature=' \
+        + 'q69mSGul5x6KACTn0Vl%2BX6N4hH1lL45yQiEbmLzJvNoJ1hwkBuiEv%2FLLpJuyLWtIrgU7%2Bq0TAUO0f%2Bai0bqjKQ%3D%3D'
     secret = 'qwerty'
 
     @classmethod
