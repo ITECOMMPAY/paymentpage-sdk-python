@@ -17,7 +17,8 @@ class SignatureHandlerTest(unittest.TestCase):
                         "status": "success"
                     },
                 "some_bool_param": True,
-                "signature": "TZS0J65ReNUMgKzeXUey9xOGGyC7r4OhsFXt/3H8XZM2Le8Wot2E1NIjeSPOyV1F3sUU6F3kfo9om2dhbe3ieA=="
+                "signature": "TZS0J65ReNUMgKzeXUey9xOGGyC7r4OhsFXt/3H8XZM2Le8Wot2E1NIjeSPOyV1F3sUU6F3kfo9om2dhbe3ieA==",
+                "frame_mode": "popup"
             }
         }
     payment_multilevel_data =\

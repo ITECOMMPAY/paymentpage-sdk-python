@@ -9,10 +9,12 @@ class SignatureHandler(object):
 
     Attributes:
         ITEMS_DELIMITER - signature concatenation delimiter
+        IGNORE_KEYS - ignore keys in signature
 
         __secretKey - Secret key
     """
     ITEMS_DELIMITER = ';'
+    IGNORE_KEYS = ['frame_mode']
 
     __secretKey = None
 
@@ -42,24 +44,31 @@ class SignatureHandler(object):
         :return:
         """
         secret_key = self.__secretKey.encode('utf-8')
-        params_to_sign = self.__get_params_to_sign(params)
+        params_to_sign = self.__get_params_to_sign(params, self.IGNORE_KEYS)
         params_to_sign_list = list(OrderedDict(sorted(params_to_sign.items(), key=lambda t: t[0])).values())
         string_to_sign = self.ITEMS_DELIMITER.join(params_to_sign_list).encode('utf-8')
 
         return base64.b64encode(hmac.new(secret_key, string_to_sign, hmac._hashlib.sha512).digest()).decode()
 
-    def __get_params_to_sign(self, params: dict, prefix='', sort=True) -> dict:
+    def __get_params_to_sign(self, params: dict, ignore=None, prefix='', sort=True) -> dict:
         """
         Get parameters to sign
 
         :param params:
+        :param ignore:
         :param prefix:
         :param sort:
         :return:
         """
+        if ignore is None:
+            ignore = []
+
         params_to_sign = {}
 
         for key in params:
+            if key in ignore:
+                continue
+
             param_key = prefix + (':' if prefix else '') + key
             value = params[key]
 
@@ -67,7 +76,7 @@ class SignatureHandler(object):
                 value = {str(key): value for key, value in enumerate(value)}
 
             if isinstance(value, dict):
-                sub_array = self.__get_params_to_sign(value, param_key, False)
+                sub_array = self.__get_params_to_sign(value, ignore, param_key, False)
                 params_to_sign.update(sub_array)
             else:
                 if isinstance(value, bool):
