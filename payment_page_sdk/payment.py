@@ -63,15 +63,17 @@ class Payment(object):
 
     INTERFACE_TYPE = 24
 
-    def __init__(self, project_id: str, payment_id: str):
+    def __init__(self, project_id: str, payment_id: str = ''):
         """
         Payment constructor
 
         :param project_id: str
         """
         self.__dict__['project_id'] = project_id
-        self.__dict__['payment_id'] = payment_id
         self.__dict__['interface_type'] = json.dumps({'id': self.INTERFACE_TYPE})
+
+        if payment_id:
+            self.__dict__['payment_id'] = payment_id
 
     def get_params(self) -> dict:
         """

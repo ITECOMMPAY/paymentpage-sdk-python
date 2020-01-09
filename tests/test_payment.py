@@ -14,6 +14,7 @@ class PaymentTest(unittest.TestCase):
         }
 
     def test_get_params(self):
-        payment = Payment('1', 'test-payment')
+        payment = Payment('1')
+        payment.payment_id = 'test-payment'
         payment.best_before = datetime(2055, 5, 5)
         self.assertEqual(self.compare_data, payment.get_params())
