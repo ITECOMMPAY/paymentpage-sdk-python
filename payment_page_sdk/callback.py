@@ -62,7 +62,7 @@ class Callback(object):
 
         :return: mixed
         """
-        return self.get_value_by_pathname('payment')
+        return self.get_value('payment')
 
     def get_payment_status(self) -> str:
         """
@@ -70,7 +70,7 @@ class Callback(object):
 
         :return: str
         """
-        return self.get_value_by_pathname('payment.status')
+        return self.get_value('payment.status')
 
     def get_payment_id(self) -> str:
         """
@@ -78,7 +78,7 @@ class Callback(object):
 
         :return: str
         """
-        return self.get_value_by_pathname('payment.id')
+        return self.get_value('payment.id')
 
     def get_signature(self) -> str:
         """
@@ -89,7 +89,7 @@ class Callback(object):
         sign_paths = ['signature', 'general.signature']
 
         for sign_path in sign_paths:
-            sign = self.get_value_by_pathname(sign_path)
+            sign = self.get_value(sign_path)
             if sign is not None:
                 return sign
 
@@ -123,7 +123,7 @@ class Callback(object):
 
         return self.__signatureHandler.check(data, signature)
 
-    def get_value_by_pathname(self, pathname: str):
+    def get_value(self, pathname: str):
         """
         Get value by pathname
 
