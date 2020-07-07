@@ -36,13 +36,28 @@ class CallbackTest(unittest.TestCase):
                 },
             "signature": "UGzKT0NC26f4u0niyJSQPx5q3kFFIndwLXeJVXahfCFwbYg34h32gh3"
         }
-    payment_data_without_status =\
+    payment_data_without_sign =\
         {
             "payment":
                 {
                     "id": "test-payment"
+                }
+        }
+    cb_data_without_payment =\
+        {
+            "project_id": "123",
+            "recurring":
+                {
+                    "id": 321,
+                    "status": "active",
+                    "type": "Y",
+                    "currency": "EUR",
+                    "exp_year": "2025",
+                    "exp_month": "12",
+                    "period": "D",
+                    "time": "11",
                 },
-            "signature": "yVp+lFVggXb0iitKgb49yfl/riUGRXMaTVCqiJTEbfkIt2PCpIR3vwyBg+SgtsoG4HTDdg9X7rxi0A1R/U2O5w=="
+            "signature": "AThqkBCZ6WZtY3WrMV28o7SM/vq6OIVF9qiVbELN4e/Ux59Lb5LFFnEuTq6bHa5pRvaPIkQGABXdpIrNLaeJdQ=="
         }
 
     @classmethod
@@ -79,6 +94,12 @@ class CallbackTest(unittest.TestCase):
 
     def test_get_null_param(self):
         signature_handler = SignatureHandler(self.secret)
-        payment_data_raw = json.dumps(self.payment_data_without_status)
+        payment_data_raw = json.dumps(self.cb_data_without_payment)
         callback = Callback(payment_data_raw, signature_handler)
         self.assertEqual(callback.get_payment_status(), None)
+
+    def test_undefined_sign(self):
+        with self.assertRaises(ProcessException):
+            signature_handler = SignatureHandler(self.secret)
+            payment_data_raw = json.dumps(self.payment_data_without_sign)
+            Callback(payment_data_raw, signature_handler)

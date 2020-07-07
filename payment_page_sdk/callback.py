@@ -62,7 +62,7 @@ class Callback(object):
 
         :return: mixed
         """
-        return self.__get_value_by_name('payment')
+        return self.get_value_by_pathname('payment')
 
     def get_payment_status(self) -> str:
         """
@@ -70,7 +70,7 @@ class Callback(object):
 
         :return: str
         """
-        return self.__get_value_by_name('status', self.get_payment())
+        return self.get_value_by_pathname('payment.status')
 
     def get_payment_id(self) -> str:
         """
@@ -78,7 +78,7 @@ class Callback(object):
 
         :return: str
         """
-        return self.__get_value_by_name('id', self.get_payment())
+        return self.get_value_by_pathname('payment.id')
 
     def get_signature(self) -> str:
         """
@@ -86,7 +86,14 @@ class Callback(object):
 
         :return: str
         """
-        return self.__get_value_by_name('signature')
+        sign_paths = ['signature', 'general.signature']
+
+        for sign_path in sign_paths:
+            sign = self.get_value_by_pathname(sign_path)
+            if sign is not None:
+                return sign
+
+        raise ProcessException('Signature undefined')
 
     def decode_response(self, raw_data: str) -> dict:
         """
@@ -116,31 +123,26 @@ class Callback(object):
 
         return self.__signatureHandler.check(data, signature)
 
-    def __get_value_by_name(self, name: str, data: dict = {}):
+    def get_value_by_pathname(self, pathname: str):
         """
-        Get value by name
+        Get value by pathname
 
-        :param str name:
-        :param dict data:
-        :return:
+        :param str pathname:
+        :return: mixed
         """
-        if data == {}:
-            data = self.__data
+        keys = pathname.split('.')
+        cb_data = self.__data
 
-        if name in data:
-            return data[name]
-
-        for key in data:
-            if isinstance(data[key], dict):
-                sub_value = self.__get_value_by_name(name, data[key])
-                if sub_value is not None:
-                    return sub_value
-
-        return None
+        for key in keys:
+            if key in cb_data:
+                cb_data = cb_data[key]
+            else:
+                return None
+        return cb_data
 
     def __remove_param(self, name: str, data: dict):
         """
-        Unset param at callback adata
+        Unset param at callback data
 
         :param str name:
         :param dict data:
