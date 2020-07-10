@@ -134,7 +134,7 @@ class Callback(object):
         cb_data = self.__data
 
         for key in keys:
-            if key in cb_data:
+            if key in cb_data and not isinstance(cb_data, str):
                 cb_data = cb_data[key]
             else:
                 return None
