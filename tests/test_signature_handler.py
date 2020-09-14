@@ -25,7 +25,7 @@ class SignatureHandlerTest(unittest.TestCase):
         {
             "payment":
                 {
-                    "id": "test-payment",
+                    "id": "test-payment"
                 },
             "errors":
                 [
@@ -41,11 +41,10 @@ class SignatureHandlerTest(unittest.TestCase):
                     },
                     {
                         "code": "456",
-                        "message": "minor crash",
-                        "description": None
+                        "message": "minor crash"
                     }
                 ],
-            "signature": "dxjnun8oySSl0CWlhhjy/k1V9CZcCtaHvu/Y5qJQbWHq8wd6TqTUt4bIfHrlWxT8ba9NOJfkgGHrGc5OgyQVGA=="
+            "signature": "i6F9q/cfj8T+r/9z1U1f+WgGe0Y/2L2Ml7pp6x6GKLmS0SwbEzcD1/DJ2Hx4PwSgyD696SU19MjtHBF0gv+LKA=="
         }
 
     @classmethod
