@@ -69,7 +69,7 @@ class SignatureHandler(object):
             if key in ignore:
                 continue
 
-            param_key = prefix + (':' if prefix else '') + key
+            param_key = prefix + (':' if prefix else '') + key.replace(':', '::')
             value = params[key]
 
             if isinstance(value, list):
