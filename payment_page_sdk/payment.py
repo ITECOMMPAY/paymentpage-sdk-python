@@ -1,4 +1,4 @@
-
+import warnings
 from collections.abc import Iterable
 import json
 
@@ -8,7 +8,8 @@ class Payment(object):
 
     Attributes:
         str account_token: The token of the bank card that will be used to perform a payment
-        str card_operation_type: Type of payment performed via payment card
+        str card_operation_type: Type of payment performed via payment card .. deprecated:: 1.2 Use `operation_type` instead.
+        str operation_type: Type of payment performed via payment card
         datetime best_before: Date and time when the payment period expires.
         bool close_on_missclick: A parameter that specifies the action of the widget (opened in the modal window) when a customer clicks outside the widget area.
         str css_modal_wrap: An additional CSS class for a modal window.
@@ -86,5 +87,12 @@ class Payment(object):
     def __setattr__(self, name, value):
         if name == 'best_before':
             value = value.isoformat()
-
-        self.__dict__[name] = value
+        if name == 'card_operation_type':
+            warnings.warn(
+                "card_operation_type is deprecated, use another field instead",
+                DeprecationWarning,
+                stacklevel=2
+            )
+            self.__dict__['operation_type'] = value
+        else:
+            self.__dict__[name] = value
