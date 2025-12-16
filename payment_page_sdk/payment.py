@@ -1,3 +1,4 @@
+import base64
 import warnings
 from collections.abc import Iterable
 import json
@@ -83,6 +84,12 @@ class Payment(object):
         :return: dict
         """
         return self.__dict__
+
+    def set_booking_info(self, booking_info: dict) -> None:
+        json_str = json.dumps(booking_info)
+        json_bytes = json_str.encode('utf-8')
+        base64_bytes = base64.b64encode(json_bytes)
+        self.__dict__['booking_info'] = base64_bytes.decode('utf-8')
 
     def __setattr__(self, name, value):
         if name == 'best_before':
