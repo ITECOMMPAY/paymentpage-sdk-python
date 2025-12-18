@@ -5,7 +5,8 @@ from typing import Any, Dict
 
 def load_json_from_file(filepath: str) -> Dict[str, Any]:
     try:
-        with open(Path(__file__).resolve().parent.parent.name + filepath, "r", encoding="utf-8") as file:
+        base_dir = Path(__file__).resolve().parent.parent
+        with open(base_dir / filepath, "r", encoding="utf-8") as file:
             return json.load(file)
     except FileNotFoundError:
         raise FileNotFoundError(f"JSON file not found: {filepath}")

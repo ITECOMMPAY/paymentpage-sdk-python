@@ -1,7 +1,8 @@
 import base64
 import warnings
-from collections.abc import Iterable
 import json
+
+from payment_page_sdk.process_exception import ProcessException
 
 
 class Payment(object):
@@ -86,7 +87,14 @@ class Payment(object):
         return self.__dict__
 
     def set_booking_info(self, booking_info: dict) -> None:
-        json_str = json.dumps(booking_info)
+        if not booking_info:
+            raise ProcessException('Parameter booking_info must not be null or empty')
+
+        try:
+            json_str = json.dumps(booking_info)
+        except (TypeError, ValueError) as e:
+            raise ProcessException('Invalid booking_info JSON structure') from e
+
         json_bytes = json_str.encode('utf-8')
         base64_bytes = base64.b64encode(json_bytes)
         self.__dict__['booking_info'] = base64_bytes.decode('utf-8')
