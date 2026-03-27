@@ -81,8 +81,6 @@ class SignatureHandler(object):
             else:
                 if isinstance(value, bool):
                     value = '1' if value else '0'
-                elif value is None:
-                    value = ''
                 else:
                     value = str(value)
                 params_to_sign[param_key] = param_key + ':' + value
